@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import '../styles/EditorPane.css';
+import React from 'react';
 
-const EditorPane = () => {
-  const [language, setLanguage] = useState('javascript');
+const EditorPane = ({ language, setLanguage }) => {
   return (
     <div className='editor-container'>
       <div className='language-timer-reset-container'>
-        <div className='language-menu'>Language dropdown</div>
+        <select
+          className='language-menu'
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value='python'>Python</option>
+          <option value='javascript'>JavaScript</option>
+          <option value='cpp'>C++</option>
+          <option value='java'>Java</option>
+        </select>
         <div className='timer'>Timer</div>
         <div className='reset-btn'>Reset</div>
       </div>
