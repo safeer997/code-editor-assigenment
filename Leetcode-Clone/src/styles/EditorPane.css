@@ -1,0 +1,51 @@
+/* Main container */
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1e1e1e; /* dark background */
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Section */
+.language-timer-reset-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #2c2c2c;
+  border-bottom: 1px solid #444;
+}
+
+/* Individual header elements */
+.language-menu,
+.timer,
+.reset-btn {
+  background-color: #3a3a3a;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.language-menu:hover,
+.timer:hover,
+.reset-btn:hover {
+  background-color: #505050;
+}
+
+/* Code Frame */
+.code-frame {
+  flex: 1;
+  padding: 0;
+  overflow: hidden;
+}
+
+.code-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
