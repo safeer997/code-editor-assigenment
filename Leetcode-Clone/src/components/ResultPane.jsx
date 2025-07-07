@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/ResultPane.css'; // Assuming you’ll use external CSS
+import '../styles/ResultPane.css'; 
 
 const ResultPane = ({ code, language, onRun }) => {
   const [activeTab, setActiveTab] = useState('input');

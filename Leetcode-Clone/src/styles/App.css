@@ -1,0 +1,45 @@
+/* Root layout */
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Left: Problem section */
+.problem-pane {
+  width: 40%;
+  padding: 24px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+/* Right side: Editor + Result in vertical column */
+.editor-result-pane {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Editor takes 60% height */
+.editor-container {
+  flex: 6;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Result takes 40% height */
+.result-container {
+  flex: 4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #fafafa;
+}

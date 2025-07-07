@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import EditorPane from './components/EditorPane.jsx';
 import ResultPane from './components/ResultPane.jsx';
 import axios from 'axios';
+import ProblemPane from './components/ProblemPane.jsx';
+import '../src/styles/App.css';
 
 function App() {
   const [code, setCode] = useState('');
@@ -58,8 +60,17 @@ function App() {
 
   return (
     <div className='main-container'>
-      <EditorPane language={language} setLanguage={setLanguage} />
-      <ResultPane code={code} language={language} onRun={handleRun} />
+      <div className='problem-pane'>
+        <ProblemPane />
+      </div>
+      <div className='editor-result-pane'>
+        <div className='editor-container'>
+          <EditorPane language={language} setLanguage={setLanguage} />
+        </div>
+        <div className='result-container'>
+          <ResultPane code={code} language={language} onRun={handleRun} />
+        </div>
+      </div>
     </div>
   );
 }

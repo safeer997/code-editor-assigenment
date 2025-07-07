@@ -1,19 +1,22 @@
 import React from 'react';
+import '../styles/EditorPane.css';
 
 const EditorPane = ({ language, setLanguage }) => {
   return (
     <div className='editor-container'>
       <div className='language-timer-reset-container'>
-        <select
-          className='language-menu'
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option value='python'>Python</option>
-          <option value='javascript'>JavaScript</option>
-          <option value='cpp'>C++</option>
-          <option value='java'>Java</option>
-        </select>
+        <div className='lang-menu'>
+          <select
+            className='language-menu'
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            <option value='python'>Python</option>
+            <option value='javascript'>JavaScript</option>
+            <option value='cpp'>C++</option>
+            <option value='java'>Java</option>
+          </select>
+        </div>
         <div className='timer'>Timer</div>
         <div className='reset-btn'>Reset</div>
       </div>
