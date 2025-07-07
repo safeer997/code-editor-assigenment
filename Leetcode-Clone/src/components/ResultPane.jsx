@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-import '../styles/ResultPane.css'; 
+import '../styles/ResultPane.css';
 
 const ResultPane = ({ code, language, onRun }) => {
   const [activeTab, setActiveTab] = useState('input');
   const [inputValue, setInputValue] = useState('');
   const [outputValue, setOutputValue] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
 
-  console.log('code recieved :', code);
+  // console.log('code recieved :', code);
+
+  const disableBtn = () => {
+    setTimeout(() => setBtnDisabled(false), 10000);
+  };
 
   const handleRunClick = async () => {
-    if (!code.trim()) return alert('Code is empty!');
-    const output = await onRun(code, language, inputValue); // call API from parent
+    setBtnDisabled(true);
+    disableBtn();
+    if (!code.trim()) {
+      return alert('Code is empty!');
+    }
+    const output = await onRun(code, language, inputValue);
     setOutputValue(output);
     setActiveTab('output');
   };
@@ -48,9 +57,13 @@ const ResultPane = ({ code, language, onRun }) => {
         />
       </div>
 
-      <div className='run-btn' onClick={handleRunClick}>
+      <button
+        className='run-btn '
+        disabled={btnDisabled}
+        onClick={handleRunClick}
+      >
         Run
-      </div>
+      </button>
     </div>
   );
 };
