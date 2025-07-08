@@ -58,11 +58,92 @@ function App() {
     }
   };
 
+  // useEffect(() => {
+  //   let resizer = document.getElementById('resizer');
+  //   let problemPane = document.getElementById('problempaneid');
+
+  //   let resizing = false;
+
+  //   //when click happens
+  //   resizer.addEventListener('mousedown', (e) => {
+  //     resizing = true;
+  //     document.body.style.cursor = 'ew-resize';
+  //     e.preventDefault();
+  //   });
+
+  //   //when mouse is released
+  //   document.addEventListener('mouseup', (e) => {
+  //     if (resizing) {
+  //       resizing = false;
+  //       document.body.style.cursor = 'default';
+  //     }
+  //   });
+
+  //   //lets calculate width and apply the changes.
+  //   document.addEventListener('mousemove', (e) => {
+  //     if (!resizing) {
+  //       return;
+  //     }
+  //     let leftOffset = document.getElementById('maincontainerid').offsetLeft;
+  //     let newWidth = e.clientX - leftOffset;
+  //     problemPane.style.width = newWidth + 'px';
+  //   });
+
+  //   return () => {
+  //     document.removeEventListener('mousedown', () => {});
+  //     document.removeEventListener('mousemove', () => {});
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const resizer = document.getElementById('resizer');
+    const problemPane = document.getElementById('problempaneid');
+    const mainContainer = document.getElementById('maincontainerid');
+    const overlay = document.getElementById('iframeoverlay');
+
+    let resizing = false;
+
+    const handleMouseDown = (e) => {
+      resizing = true;
+      document.body.style.cursor = 'ew-resize';
+      e.preventDefault();
+    };
+
+    const handleMouseMove = (e) => {
+      if (!resizing) return;
+
+      const leftOffset = mainContainer.offsetLeft;
+      const newWidth = e.clientX - leftOffset;
+
+      problemPane.style.width = `${newWidth}px`;
+      overlay.style.display = 'block';
+    };
+
+    const handleMouseUp = () => {
+      if (resizing) {
+        resizing = false;
+        document.body.style.cursor = 'default';
+        overlay.style.display = 'none';
+      }
+    };
+
+    resizer.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      resizer.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
+
   return (
-    <div className='main-container'>
-      <div className='problem-pane'>
+    <div className='main-container' id='maincontainerid'>
+      <div id='problempaneid' className='problem-pane'>
         <ProblemPane />
       </div>
+      <div className='resizer' id='resizer'></div>
       <div className='editor-result-pane'>
         <div className='editor-container'>
           <EditorPane language={language} setLanguage={setLanguage} />
@@ -71,6 +152,7 @@ function App() {
           <ResultPane code={code} language={language} onRun={handleRun} />
         </div>
       </div>
+      <div id='iframeoverlay' className='iframeoverlay'></div>
     </div>
   );
 }

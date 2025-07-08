@@ -43,3 +43,21 @@
   overflow-y: auto;
   background-color: #fafafa;
 }
+
+.resizer {
+  width: 5px;
+  cursor: ew-resize;
+  background-color: #ccc;
+  z-index: 1;
+}
+
+.iframeoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: none; /* default: hidden */
+  /* background-color: red; */
+}
